@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>jsonpでのクロスドメイン通信</title>
+</head>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+$(function(){
+    $("#btn").click(function() {
+        getJson();
+    });
+});
+function getJson(){
+    $.ajax({
+        type: 'GET',
+        url: 'http://www.image-pit.com/test/jsonp.php',
+        dataType: 'jsonp',
+        timeout : 3000,
+        success: function(json){
+            console.log(json);
+            $("#result").text("data1:" + json["data1"] + "data2:" + json["data2"]);
+        },
+        error: function(){
+            alert('error');
+        }
+    });
+}
+</script>
+<body>
+<input type="button" value="jsonp通信" id="btn">
+<div id="result"></div>
+</body>
+</html>

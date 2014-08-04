@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Ajax通信</title>
+</head>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+$(function(){
+    $("#btn").click(function() {
+        exeAjax();
+    });
+});
+function exeAjax(){
+    $.ajax({
+        type: 'GET',
+        url: './ajax.txt',
+        dataType: 'text',
+        timeout : 3000,
+        success: function(data){
+            console.log(data);
+            $("#result").text(data);
+        },
+        error: function(error){
+            alert('error');
+            console.log(error);
+        }
+    });
+}
+</script>
+<body>
+<input type="button" value="Ajax通信" id="btn">
+<div id="result"></div>
+</body>
+</html>
